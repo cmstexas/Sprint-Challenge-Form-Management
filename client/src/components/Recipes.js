@@ -1,35 +1,57 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 
-// function Recipes(recipe) {
-//     const [meals, setMeals] = useState([])
-//     useEffect(() => {
-//         axios.get('http://localhost:5000/api/restricted/data')
-//         .then(res => {
-//             setMeals(res.data);
-//         })
-//         .catch(error => {
-//             console.log('Error', error)
-//         })
-//     })
 
-// } [setMeals]
+const Recipes = (props) => {
+    const [users, setUsers] = useState([]);
+    console.log(users)
+
+    useEffect(() => {
+      axios.get(`http://localhost:5000/api/restricted/data`)
+            .then(res => setUsers(res.data))
+    }, []);
+
+    return (
+    <div>
+       {users.map((user => ( 
+            <div>
+                <h2>Recipes</h2>
+                <h3>{user.name}</h3>
+                <h3>{user.course}</h3>
+                <h4>{user.technique}</h4>
+                <p>{user.ingredients}</p>
+            </div>   
+            )))} 
+    </div>
+     )}
 
 
+export default Recipes;
+
+
+
+
+
+
+
+// const Recipes = (props) => {
 //     return (
 //     <div>
-//         {meals.map((recipe) => ( 
+//        {users.map((user => ( 
 //             <div>
-//                 <p>key={recipe.id}</p>
-//                 <p>{recipe.name}</p>
-//                 <p>{recipe.course}</p>
-//                 <p>{recipe.technique}</p>
-//                 <p>{recipe.ingredients}</p>
-//             </div>    
-//         ))}
+//                 <h2>Recipes</h2>
+//                 <h3>{user.name}</h3>
+//                 <h3>{user.course}</h3>
+//                 <h4>{user.technique}</h4>
+//                 <p>{user.ingredients}</p>
+//             </div>   
+//             )))} 
 //     </div>
-// )
+//      )}
 
 
 // export default Recipes;
+
+
+// {meals.map((recipe) => ( 
