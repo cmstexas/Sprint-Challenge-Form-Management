@@ -13,16 +13,21 @@ const Recipes = (props) => {
     }, []);
 
     return (
-    <div>
-       {users.map((user => ( 
-            <div>
-                <h2>Recipes</h2>
-                <h3>{user.name}</h3>
-                <h3>{user.course}</h3>
-                <h4>{user.technique}</h4>
-                <p>{user.ingredients}</p>
-            </div>   
-            )))} 
+    <div><h1 className="recipe-title">Recipe List</h1>
+        <div className="recipe-container">
+        {users.map((user => ( 
+                <div className="recipe-boxes">
+                    <h3>Recipe Name:</h3>
+                    <h4>{user.name}</h4>
+                    <h3>Course Type:</h3>
+                    <h4>{user.course}</h4>
+                    <h3>Technique Used:</h3>
+                    <h4>{user.technique}</h4>
+                    <h3>Ingredient List:</h3>
+                    <p>{user.ingredients}</p>
+                </div>   
+                )))} 
+        </div>
     </div>
      )}
 
@@ -52,6 +57,3 @@ export default Recipes;
 
 
 // export default Recipes;
-
-
-// {meals.map((recipe) => ( 
