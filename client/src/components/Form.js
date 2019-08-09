@@ -5,46 +5,40 @@ import * as Yup from 'yup';
 import '../App.css';
 
 const RegForm = ({ errors, touched, values, handleSubmit, status }) => {
-    const [users, setUsers] = useState([{Name:'Roger', Email:'r@gmail.com', Password:'pw', tos:false, id: Date.now()}]);
-    console.log(status);
+    const [users, setUsers] = useState([]);
     console.log(users)
 
     useEffect(() => {
-        if (status) {
-          setUsers([...users, status]);
-        }
-      }, [status]);
+      axios.get(`http://localhost:5000/api/restricted/data`)
+            .then(res => setUsers(res.data))
+    }, []);
+
+    //     if (status) {
+    //       setUsers([...users, status]);
+    //     }
+    //   }, [status]);
 
     return (
         <div className="user-form">
       <h1>Registration Form</h1>
       <Form className='main-form'>
-        <Field className='field' type="text" name="Name" placeholder="Name" />
-        {touched.Name && errors.Name && (
-          <p className="error">{errors.Name}</p>
+        <Field className='field' type="text" name="Username" placeholder="Username" />
+        {touched.Username && errors.Username && (
+          <p className="error">{errors.Username}</p>
         )}
-
-        {/* <Field className='field' type="text" name="Email" placeholder="Email" />
-        {touched.Email && errors.Email && (
-        <p className="error">{errors.Email}</p>
-        )} */}
 
         <Field className='field' type="text" name="Password" placeholder="Password" />
         {touched.Password && errors.Password && <p className="error">{errors.Password}</p>
         }
 
-        {/* <label className="checkbox-container">
-          Agree to Terms of Service?
-         <Field type="checkbox" name="tos" checked={values.tos} />
-         <span className="checkmark" />
-        </label> */}
-
         <button className='btn' type="submit">Register</button>
       </Form>
-
-      {users.map(user => {
-        return <p key={user.id}>{user.Name}</p>
-      })}
+     
+        <div>
+            {users.map(user => {
+                return <p key={user.id}>{user.Username}</p>
+            })}
+        </div>
     </div>
   );
 };
@@ -55,27 +49,25 @@ const RegForm = ({ errors, touched, values, handleSubmit, status }) => {
 // returns a _new_ component (copy of the passed in component with the extended logic)
 
 const FormikRegForm = withFormik({
-  mapPropsToValues({ Name, Password }) {
+  mapPropsToValues({ Username, Password }) {
     return {
-      Name: Name || '',
+      Username: Username || '',
       Password: Password || '',
     };
   },
 
   validationSchema: Yup.object().shape({
-    Name: Yup.string().required(),
-    Password: Yup.string(),
+    Username: Yup.string().required(),
+    Password: Yup.string().required(),
   }),
 
   handleSubmit(values, { setStatus, resetForm }) {
-    axios
-      .post('http://localhost:5000/api/register', values)
-      .then(res => {
-         return setStatus(res.data);
-      })
-      .catch(err => console.log(err.response));
+    axios.post('http://localhost:5000/api/register', values)
+      .then(res => alert("User created successfully"))
+        //  return setStatus(res.data);
+      .catch(err => alert("false"));
     resetForm()
-  }
+    }
 })(RegForm); // currying functions in Javascript
 
 export default FormikRegForm;

@@ -95,7 +95,8 @@ and the response object will look like this:
 }
 ```
 
-- [ ] A GET request made to `http://localhost:5000/api/restricted/data` to retrieve the data
+- [ ] A GET request made to `http://localhost:5000/api/restricted/data` to retrieve the data 
+(replace with: http://localhost:5000/api/restricted/users)
 
 - [ ] Map over the array of objects you recieve and render some or all of it's information to the DOM.
 
