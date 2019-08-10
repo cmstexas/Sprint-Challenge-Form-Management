@@ -15,7 +15,7 @@ const Recipes = (props) => {
     return (
     <div><h1 className="recipe-title">Recipe List</h1>
         <div className="recipe-container">
-        {users.map((user => ( 
+        {users.map(((user, index) => ( 
                 <div className="recipe-boxes">
                     <h3>Recipe Name:</h3>
                     <h4>{user.name}</h4>
