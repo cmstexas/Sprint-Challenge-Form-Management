@@ -26,13 +26,26 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] What are the required parts of class components?
 
+Class, class name, extends React.Component, constructor, super, render funtion, react element
+
 - [ ] Name at least three lifecycle methods?
 
+Mounting, updating, Unmounting 
+
 - [ ] Why are forms used so often in web applications and software?
+Allow the software to gather data from the user and the form can also authenticate and pre-validate the data before it's sent to back end. 
+
 
 - [ ] What advantages are there by using a forms library like Formik?
 
+Formik's advantages are: 1. getting values in and out of form state easier than general react forms 2. validation and error messages 3. handling form submission more efficiently = more flexible 
+
+
 - [ ] Why do we write tests for our apps?
+
+We write tests for our apps so that we don't waste resources. We can surface bugs faster, reduce the risk of rgressions, helps us trust the our code is working and not messing up the bigger app, acts as a safety net for big changes or refactoring, acts as documentation, and helps us write better code. 
+
+
 
 ## Project Set Up
 
@@ -82,7 +95,8 @@ and the response object will look like this:
 }
 ```
 
-- [ ] A GET request made to `http://localhost:5000/api/restricted/data` to retrieve the data
+- [ ] A GET request made to `http://localhost:5000/api/restricted/data` to retrieve the data 
+(replace with: http://localhost:5000/api/restricted/users)
 
 - [ ] Map over the array of objects you recieve and render some or all of it's information to the DOM.
 
